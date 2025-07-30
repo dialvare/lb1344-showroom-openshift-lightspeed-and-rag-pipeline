@@ -2,9 +2,9 @@
 
 Most organizations that have been using OpenShift Container Platform for any
 length of time have developed their own policies, procedures, templates, and
-other organizationally-specific: information about OpenShift.
+other organizationally-specific information about OpenShift.
 
-As you learned earler, OpenShift Lightspeed only uses the OpenShift
+As you learned earlier, OpenShift Lightspeed only uses the OpenShift
 documentation to support answers by default. So, how can you get your important
 internal knowledge into the system? Well, there's a process for that.
 
@@ -171,9 +171,7 @@ podman push $(oc get route default-route \
 
 == Modify the OpenShift Lightspeed Configuration
 
-Now that the image is available in an accessible container registry, you have to 
-tell the OpenShift Lightspeed Operator to deploy the new RAG database alongside
-the existing one.
+Now that the image is available in an accessible container registry, you have to tell the OpenShift Lightspeed Operator to deploy the new RAG database alongside the existing one.
 
 In the OpenShift Console, click _Operators_ and then _Installed Operators_ in
 the left hand navigation. Then, make sure to adjust the project dropdown to 
@@ -186,8 +184,7 @@ called `cluster` in the list.
 
 Finally, select the YAML tab.
 
-In the YAML editor, you will want to insert the following yaml segment just before
-the `status` block. Your full YAML should look something like:
+In the YAML editor, you will want to insert the following yaml segment just before the `status` block. Your full YAML should look something like:
 
 [source,yaml]
 ----

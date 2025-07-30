@@ -10,7 +10,7 @@ and Kubernetes. If you try hard enough, you can probably get it to do something
 it wasn't explicitly designed to do, but this is a shortcoming of all
 non-deterministic language-model-based systems. It is a bit of a game of 
 whack-a-mole trying to keep up with all of the possible negative outcomes, and
-trying to prevent them is a topic of active Ph,D. research right now. If you see
+trying to prevent them is a topic of active PhD research right now. If you see
 something bad, be sure to report it using the feedback feature. We will always
 do our best to improve the quality and safety of the system.
 
@@ -103,15 +103,22 @@ Note that you can attach multiple things to your request at the same time, like
 a service, a route, and a deployment. This can make more complicated
 troubleshooting scenarios easier.
 
-== Cluster Interrogation
+== Cluster Interaction
 
-At this time, OpenShift Lightspeed cannot actively interrogate the cluster via
-the OpenShift/Kubernetes API, but that is a feature we are actively working on
-and hope to have in Technology Preview very soon!
+The Cluster Interaction feature allows OpenShift Lightspeed to interact and gather information from your OpenShift cluster in a read-only manner. This enables the LLM to generate highly customized responses for your environment.
 
-Try asking some questions about your cluster and see how OpenShift Lightspeed
-currently responds. It should give you answers that help you find the answer
-yourself.
+NOTE: This is currently a Technology Preview feature of OpenShift Lightspeed.
+
+OpenShift Lightspeed includes an MCP server already preconfigured to communicate with the OpenShift API. This server provides some built-in tools, such as _oc_get_, _oc_describe_, _oc_logs_, etc. When the cluster interaction flag is enabled, the model may choose to call one of those tools to retrieve relevant information directly from the cluster to support your query. All tool usage is performed using the user's own credentials and access rights, preventing any privilege escalation.
+
+Cluster Interaction is enabled in our environment, so you can try asking some questions about cluster resources and see how OpenShift Lightspeed responds. For example, you can ask:
+
+[source,role="execute",subs=attributes+]
+----
+What are the pods in the openshift-lightspeed namespace?
+----
+
+The GPT-4o model likely chose to use the _oc_get_ tool to retrieve pod information from the `openshift-lightspeed` namespace. You can view the tool's output by clicking the **oc_get** button displayed after the response. This information was used by the model to generate the final answer containing the list of all pods in that namespace.
 
 == Problem!
 
